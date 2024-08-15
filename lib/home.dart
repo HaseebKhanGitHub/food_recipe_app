@@ -1,7 +1,9 @@
 
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -18,9 +20,10 @@ class _HomeState extends State<Home> {
   void getRecipe(String query) async{
     //String url = 'https://api.edamam.com/api/recipes/v2?type=any&q=$query&app_id=6b0ebedc&app_key=c0375006048ed6bc6dae30a6282ca977&ingr=0-3&health=alcohol-free&calories=100-300';
     String url = 'https://api.edamam.com/api/recipes/v2?type=any&q=$query&app_id=6b0ebedc&app_key=c0375006048ed6bc6dae30a6282ca977';
-    var response = await http.get(Uri.parse(url));
-    print(response.body);
-  }
+    Response response = await get(Uri.parse(url));
+    Map data = jsonDecode(response.body);
+    print(data);
+      }
 
   @override
   void initState() {
@@ -66,7 +69,7 @@ class _HomeState extends State<Home> {
                           if((searchController.text).replaceAll(' ', '') == ''){
                             print('Blanked');
                           } else{
-                            print(searchController.text);
+                            getRecipe(searchController.text);
                           }
                         },
                         child: Container(
