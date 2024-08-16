@@ -1,8 +1,9 @@
 
 
 import 'dart:convert';
-
+import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:food_recipe_app/model.dart';
 import 'package:http/http.dart';
 
 class Home extends StatefulWidget {
@@ -14,22 +15,40 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
-  TextEditingController searchController = new TextEditingController();
+  List<RecipeModel> recipeList = <RecipeModel> [];
+
+  TextEditingController searchController = TextEditingController();
 
 
   void getRecipe(String query) async{
+
+    recipeList.clear();
     //String url = 'https://api.edamam.com/api/recipes/v2?type=any&q=$query&app_id=6b0ebedc&app_key=c0375006048ed6bc6dae30a6282ca977&ingr=0-3&health=alcohol-free&calories=100-300';
     String url = 'https://api.edamam.com/api/recipes/v2?type=any&q=$query&app_id=6b0ebedc&app_key=c0375006048ed6bc6dae30a6282ca977';
     Response response = await get(Uri.parse(url));
     Map data = jsonDecode(response.body);
-    print(data);
-      }
+   // log(data.toString());
+    data['hits'].forEach((element){
+      RecipeModel recipeModel = new RecipeModel();
+      recipeModel = RecipeModel.fromMap(element['recipe']);
+      recipeList.add(recipeModel);
+      log(recipeList.toString());
+    });
+    setState(() {
+
+    });
+
+    recipeList.forEach((Recipe){
+      print(Recipe.applabel);
+
+    });
+
+          }
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    getRecipe('Ladoo');
+      getRecipe('Apple');
   }
 
   @override
