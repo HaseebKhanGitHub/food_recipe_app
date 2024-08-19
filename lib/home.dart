@@ -15,11 +15,12 @@ class _HomeState extends State<Home> {
   List<RecipeModel> recipeList = <RecipeModel>[];
 
   List reciptcatlist = [{
-    'imageUrl':'assets/images/dalchwl.jpg', 'heading': 'Chilli Food '
+    'imageUrl':'https://images.unsplash.com/photo-1593560704563-f176a2eb61db', 'heading': 'Chilli Food '
   },
     {
-      'imageUrl':'assets/images/dalchwl.jpg', 'heading': 'Chilli Food '
+      'imageUrl':'https://images.unsplash.com/photo-1593560704563-f176a2eb61db', 'heading': 'Chilli Food '
     }];
+
 
   TextEditingController searchController = TextEditingController();
 
@@ -36,6 +37,8 @@ class _HomeState extends State<Home> {
       recipeModel = RecipeModel.fromMap(element['recipe']);
       recipeList.add(recipeModel);
       log(recipeList.toString());
+
+
     });
     setState(() {});
 
@@ -132,6 +135,8 @@ class _HomeState extends State<Home> {
                       itemCount: recipeList.length,
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
+                        String caloText = recipeList[index].appcalo.toString();
+                        String displayText = caloText.length > 6 ? caloText.substring(0, 6) : caloText;
                         return InkWell(
                           child: Card(
                             margin: EdgeInsets.all(20),
@@ -183,8 +188,12 @@ class _HomeState extends State<Home> {
                                             mainAxisAlignment: MainAxisAlignment.center,
                                             children: [
                                               Icon(Icons.local_fire_department,size: 16,),
-                                              Text(recipeList[index].appcalo.toString().substring(0,6)),
-                                            ],
+                                            //  Text(recipeList[index].appcalo.toString().substring(0,6)),
+
+
+                                            Text(displayText),
+
+                              ],
                                           ),
                                         )
                                     )
@@ -254,8 +263,4 @@ class _HomeState extends State<Home> {
       ),
     );
   }
-}
-
-Widget khan() {
-  return Text('Khan is good boy');
 }
