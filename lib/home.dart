@@ -15,10 +15,10 @@ class _HomeState extends State<Home> {
   List<RecipeModel> recipeList = <RecipeModel>[];
 
   List reciptcatlist = [{
-    'imageUrl':'https://images.unsplash.com/photo-1593560704563-f176a2eb61db', 'heading': 'Chilli Food '
+    'imageUrl':'https://images.unsplash.com/photo-1593560704563-f176a2eb61db', 'heading': 'Spicy Food '
   },
     {
-      'imageUrl':'https://images.unsplash.com/photo-1593560704563-f176a2eb61db', 'heading': 'Chilli Food '
+      'imageUrl':'https://images.unsplash.com/photo-1593560704563-f176a2eb61db', 'heading': 'Non-Spicy Food '
     }];
 
 
@@ -232,6 +232,7 @@ class _HomeState extends State<Home> {
                                     child: Container(
                                       padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                                       decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(18.0),
                                         color: Colors.black26
                                       ),
                                       child: Column(
@@ -240,7 +241,7 @@ class _HomeState extends State<Home> {
                                           Text(reciptcatlist[index]['heading'],
                                             style: TextStyle(
                                               color: Colors.white,
-                                              fontSize: 28
+                                              fontSize: 20
                                             ),
                                           )
                                         ],
