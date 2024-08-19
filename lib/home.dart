@@ -14,6 +14,13 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   List<RecipeModel> recipeList = <RecipeModel>[];
 
+  List reciptcatlist = [{
+    'imageUrl':'assets/images/dalchwl.jpg', 'heading': 'Chilli Food '
+  },
+    {
+      'imageUrl':'assets/images/dalchwl.jpg', 'heading': 'Chilli Food '
+    }];
+
   TextEditingController searchController = TextEditingController();
 
   void getRecipe(String query) async {
@@ -179,15 +186,69 @@ class _HomeState extends State<Home> {
                                               Text(recipeList[index].appcalo.toString().substring(0,6)),
                                             ],
                                           ),
-                                        )))
+                                        )
+                                    )
+                                )
                               ],
                             ),
                           ),
                         );
                       }),
                 ),
-              ],
-            ),
+
+
+               Container(
+                 height: 100,
+                 child: ListView.builder( itemCount: reciptcatlist.length, shrinkWrap: true,
+                     scrollDirection: Axis.horizontal,
+                     itemBuilder: (context,index){
+                      return Container(
+                        child: InkWell(
+                          onTap: (){},
+                          child: Card(
+                            margin: EdgeInsets.all(20),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18)
+                            ),
+                            elevation: 0.0,
+                            child: Stack(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(18.0),
+                                  child: Image.network(reciptcatlist[index]['imageUrl'],fit: BoxFit.cover,
+                                  height: 250,width: 200,)
+                                ),
+                                Positioned(
+                                    left: 0,right: 0,top: 0,bottom: 0,
+                                    child: Container(
+                                      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                                      decoration: BoxDecoration(
+                                        color: Colors.black26
+                                      ),
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Text(reciptcatlist[index]['heading'],
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 28
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    )
+                                )
+                              ],
+                            ),
+
+                          ),
+                        ),
+                      );
+                     }
+                 ),
+
+              )
+           ] ),
           )
         ],
       ),
