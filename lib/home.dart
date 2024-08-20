@@ -18,12 +18,20 @@ class _HomeState extends State<Home> {
 
   List<RecipeModel> recipeList = <RecipeModel>[];
 
-  List reciptcatlist = [{
-    'imageUrl':'https://images.unsplash.com/photo-1593560704563-f176a2eb61db', 'heading': 'Spicy Food '
+List reciptcatlist = [{
+    'imageUrl': 'https://images.unsplash.com/photo-1526346698789-22fd84314424?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2hpbGxpc3xlbnwwfHwwfHx8MA%3D%3D', 'heading': 'Spicy Food'
   },
     {
-      'imageUrl':'https://images.unsplash.com/photo-1593560704563-f176a2eb61db', 'heading': 'Non-Spicy Food '
-    }];
+      'imageUrl':'https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?q=80&w=1528&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 'heading': 'Non-Spicy Food'
+    },
+  {
+    'imageUrl': 'https://plus.unsplash.com/premium_photo-1667546202654-e7574a20872c?q=80&w=1473&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 'heading': 'Desserts'
+  },
+  {
+    'imageUrl': 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Njh8fGRyaW5rc3xlbnwwfHwwfHx8MA%3D%3D', 'heading': 'Drinks'
+  }
+
+];
 
 
   TextEditingController searchController = TextEditingController();
@@ -70,8 +78,8 @@ class _HomeState extends State<Home> {
             height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
               gradient: LinearGradient(colors: [
-                Color(0xffec458d),
-                Color(0xdd474ed7),
+                Color(0xe82c3e50),
+                Color(0xff4A235A),
               ]),
             ),
           ),
@@ -222,7 +230,9 @@ class _HomeState extends State<Home> {
                      itemBuilder: (context,index){
                       return Container(
                         child: InkWell(
-                          onTap: (){},
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => Search(reciptcatlist[index]['heading'])));
+                          },
                           child: Card(
                             margin: EdgeInsets.all(20),
                             shape: RoundedRectangleBorder(
