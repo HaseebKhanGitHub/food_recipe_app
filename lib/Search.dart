@@ -115,6 +115,25 @@ class _SearchState extends State<Search> {
                                   hintText: 'Search Recipe',
                                   border: InputBorder.none),
                             ),
+                          ),
+
+                          ElevatedButton(onPressed: (){ //Search Button ========================================
+                            if ((searchController.text).replaceAll(' ', '') ==
+                                '') {
+                              print('Blanked');
+                            } else {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          Search(searchController.text)));
+                            }
+                          }, child: Text('Search',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white)),
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.blue.shade200),
                           )
                         ],
                       ),
