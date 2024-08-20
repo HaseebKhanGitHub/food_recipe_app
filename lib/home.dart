@@ -18,21 +18,28 @@ class _HomeState extends State<Home> {
 
   List<RecipeModel> recipeList = <RecipeModel>[];
 
-List reciptcatlist = [{
-    'imageUrl': 'https://images.unsplash.com/photo-1526346698789-22fd84314424?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2hpbGxpc3xlbnwwfHwwfHx8MA%3D%3D', 'heading': 'Spicy Food'
-  },
+  List reciptcatlist = [
     {
-      'imageUrl':'https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?q=80&w=1528&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 'heading': 'Non-Spicy Food'
+      'imageUrl':
+          'https://images.unsplash.com/photo-1526346698789-22fd84314424?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2hpbGxpc3xlbnwwfHwwfHx8MA%3D%3D',
+      'heading': 'Spicy Food'
     },
-  {
-    'imageUrl': 'https://plus.unsplash.com/premium_photo-1667546202654-e7574a20872c?q=80&w=1473&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 'heading': 'Desserts'
-  },
-  {
-    'imageUrl': 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Njh8fGRyaW5rc3xlbnwwfHwwfHx8MA%3D%3D', 'heading': 'Drinks'
-  }
-
-];
-
+    {
+      'imageUrl':
+          'https://images.unsplash.com/photo-1511690656952-34342bb7c2f2?q=80&w=1528&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      'heading': 'Non-Spicy Food'
+    },
+    {
+      'imageUrl':
+          'https://plus.unsplash.com/premium_photo-1667546202654-e7574a20872c?q=80&w=1473&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      'heading': 'Desserts'
+    },
+    {
+      'imageUrl':
+          'https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Njh8fGRyaW5rc3xlbnwwfHwwfHx8MA%3D%3D',
+      'heading': 'Drinks'
+    }
+  ];
 
   TextEditingController searchController = TextEditingController();
 
@@ -52,8 +59,6 @@ List reciptcatlist = [{
         isLoading = false;
       });
       log(recipeList.toString());
-
-
     });
     setState(() {});
 
@@ -73,7 +78,8 @@ List reciptcatlist = [{
     return Scaffold(
       body: Stack(
         children: [
-          Container(//Gradient Container ==============================================
+          Container(
+            //Gradient Container ==============================================
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
@@ -84,200 +90,269 @@ List reciptcatlist = [{
             ),
           ),
           SingleChildScrollView(
-            child: Column(
-              children: [
-                //Search Bar ===========================================================
-                SafeArea(
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 8),
-                    margin: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(24),
-                      color: Colors.white,
-                    ),
-                    child: Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            if ((searchController.text).replaceAll(' ', '') ==
-                                '') {
-                              print('Blanked');
-                            } else {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => Search(searchController.text)));
-                            }
-                          },
-                          child: Container(
-                            child: Icon(
-                              Icons.search,
-                              color: Colors.blue,
-                            ),
-                            margin: EdgeInsets.fromLTRB(3, 0, 7, 0),
-                          ),
-                        ),
-                        Expanded(
-                          child: TextField(
-                            controller: searchController,
-                            decoration: InputDecoration(
-                                hintText: 'Search Recipe',
-                                border: InputBorder.none),
-                          ),
-                        )
-                      ],
-                    ),
+            child: Column(children: [
+              //Search Bar ===========================================================
+              SafeArea(
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 8),
+                  margin: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(24),
+                    color: Colors.white,
                   ),
-                ),
-
-                Container( //Text Container ==================================================
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  child: Row(
                     children: [
-                      Text('WHAT DO YOU WANT TO COOK TODAY?',
-                          style: TextStyle(fontSize: 33, color: Colors.white)),
-                      SizedBox(
-                        height: 12,
+                      GestureDetector(
+                        onTap: () {
+                          if ((searchController.text).replaceAll(' ', '') ==
+                              '') {
+                            print('Blanked');
+                          } else {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        Search(searchController.text)));
+                          }
+                        },
+                        child: Container(
+                          child: Icon(
+                            Icons.search,
+                            color: Colors.blue,
+                          ),
+                          margin: EdgeInsets.fromLTRB(3, 0, 7, 0),
+                        ),
                       ),
-                      Text(
-                        'Lets cook something!',
-                        style: TextStyle(fontSize: 20, color: Colors.white),
-                      )
+                      Expanded(
+                        child: TextField(
+                          controller: searchController,
+                          decoration: InputDecoration(
+                              hintText: 'Search Recipe',
+                              border: InputBorder.none),
+                        ),
+                      ),
+
+                      ElevatedButton(onPressed: (){ //Search Button ========================================
+                        if ((searchController.text).replaceAll(' ', '') ==
+                            '') {
+                          print('Blanked');
+                        } else {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      Search(searchController.text)));
+                        }
+                      }, child: Text('Search',
+                           style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                                color: Colors.white)),
+                                 style: ElevatedButton.styleFrom(
+                                 backgroundColor: Colors.blue.shade200),
+                               )
                     ],
                   ),
                 ),
-                Container( //Dishes cart ========================================================
-                  child: isLoading ? LinearProgressIndicator() : ListView.builder(
-                      physics: NeverScrollableScrollPhysics(),
-                      itemCount: recipeList.length,
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        String caloText = recipeList[index].appcalo.toString();
-                        String displayText = caloText.length > 6 ? caloText.substring(0, 6) : caloText;
-                        return InkWell(
-                          onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => RecipeView(appurl : recipeList[index].appurl)));
-                          },
-                          child: Card(
-                            margin: EdgeInsets.all(20),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            elevation: 0.0,
-                            child: Stack(
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: Image.network(
-                                    recipeList[index].appimgurl,
-                                    fit: BoxFit.cover,
-                                    width: double.infinity,
-                                    height: 200,
-                                  ),
-                                ),
-                                Positioned(
-                                    left: 0,
-                                    bottom: 0,
-                                    right: 0,
-                                    child: Container(
-                                        decoration: BoxDecoration(
-                                            color: Colors.black26),
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 5, horizontal: 10),
-                                        child: Text(
-                                          recipeList[0].applabel,
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 20),
-                                        ))),
+              ),
 
-                                Positioned(
-                                  right: 0,
-                                    child: Container( //Calories Container ============================================================
-                                      width: 80,
-                                      height: 40,
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.only(
-                                          topRight: Radius.circular(10),
-                                          bottomLeft: Radius.circular(10),
-                                        )
-                                      ),
-                                        child: Center(
-                                          child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              Icon(Icons.local_fire_department,size: 16,),
-                                            //  Text(recipeList[index].appcalo.toString().substring(0,6)),  changed causing error
-
-                                            Text(displayText),
-
-                              ],
-                                          ),
-                                        )
-                                    )
-                                )
-                              ],
-                            ),
-                          ),
-                        );
-                      }),
+              Container(
+                //Text Container ==================================================
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('WHAT DO YOU WANT TO COOK TODAY?',
+                        style: TextStyle(fontSize: 33, color: Colors.white)),
+                    SizedBox(
+                      height: 12,
+                    ),
+                    Text(
+                      'Lets cook something!',
+                      style: TextStyle(fontSize: 20, color: Colors.white),
+                    )
+                  ],
                 ),
+              ),
+
+              SizedBox(
+                height: 20,
+              ),
+
+              SizedBox( //Featured Dishes ===============================================
+                  height: 200,
+                  child: CarouselView(
+                      padding: EdgeInsets.all(12),
+                      itemExtent: MediaQuery.sizeOf(context).width - 100,
+                      children: [
+                        Image.asset(
+                          'assets/images/img1.jpg',
+                          fit: BoxFit.cover,
+                        ),
+                       Image.asset(
+                          'assets/images/img2.png',
+                          fit: BoxFit.cover,
+                        ),
+                        Image.asset(
+                          'assets/images/img3.png',
+                          fit: BoxFit.cover,
+                        )
+                      ])),
 
 
-               Container( //Horizontal Containers for Food Catogories ====================================================
-                 height: 100,
-                 child: ListView.builder( itemCount: reciptcatlist.length, shrinkWrap: true,
-                     scrollDirection: Axis.horizontal,
-                     itemBuilder: (context,index){
+
+              Container(
+                //Dishes cart ========================================================
+                child: isLoading
+                    ? LinearProgressIndicator()
+                    : ListView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        itemCount: recipeList.length,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          String caloText =
+                              recipeList[index].appcalo.toString();
+                          String displayText = caloText.length > 6
+                              ? caloText.substring(0, 6)
+                              : caloText;
+                          return InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => RecipeView(
+                                          appurl: recipeList[index].appurl)));
+                            },
+                            child: Card(
+                              margin: EdgeInsets.all(20),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              elevation: 0.0,
+                              child: Stack(
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: Image.network(
+                                      recipeList[index].appimgurl,
+                                      fit: BoxFit.cover,
+                                      width: double.infinity,
+                                      height: 200,
+                                    ),
+                                  ),
+                                  Positioned(
+                                      left: 0,
+                                      bottom: 0,
+                                      right: 0,
+                                      child: Container(
+                                          decoration: BoxDecoration(
+                                              color: Colors.black26),
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 5, horizontal: 10),
+                                          child: Text(
+                                            recipeList[0].applabel,
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 20),
+                                          ))),
+                                  Positioned(
+                                      right: 0,
+                                      child: Container(
+                                          //Calories Container ============================================================
+                                          width: 80,
+                                          height: 40,
+                                          decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius: BorderRadius.only(
+                                                topRight: Radius.circular(10),
+                                                bottomLeft: Radius.circular(10),
+                                              )),
+                                          child: Center(
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Icon(
+                                                  Icons.local_fire_department,
+                                                  size: 16,
+                                                ),
+                                                //  Text(recipeList[index].appcalo.toString().substring(0,6)),  changed causing error
+
+                                                Text(displayText),
+                                              ],
+                                            ),
+                                          )))
+                                ],
+                              ),
+                            ),
+                          );
+                        }),
+              ),
+
+              Container(
+                //Horizontal Containers for Food Catogories ====================================================
+                height: 100,
+                child: ListView.builder(
+                    itemCount: reciptcatlist.length,
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
                       return Container(
                         child: InkWell(
-                          onTap: (){
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => Search(reciptcatlist[index]['heading'])));
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Search(
+                                        reciptcatlist[index]['heading'])));
                           },
                           child: Card(
                             margin: EdgeInsets.all(20),
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18)
-                            ),
+                                borderRadius: BorderRadius.circular(18)),
                             elevation: 0.0,
                             child: Stack(
                               children: [
                                 ClipRRect(
-                                  borderRadius: BorderRadius.circular(18.0),
-                                  child: Image.network(reciptcatlist[index]['imageUrl'],fit: BoxFit.cover,
-                                  height: 250,width: 300,)
-                                ),
+                                    borderRadius: BorderRadius.circular(18.0),
+                                    child: Image.network(
+                                      reciptcatlist[index]['imageUrl'],
+                                      fit: BoxFit.cover,
+                                      height: 250,
+                                      width: 300,
+                                    )),
                                 Positioned(
-                                    left: 0,right: 0,top: 0,bottom: 0,
+                                    left: 0,
+                                    right: 0,
+                                    top: 0,
+                                    bottom: 0,
                                     child: Container(
-                                      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 5, horizontal: 10),
                                       decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(18.0),
-                                        color: Colors.black26
-                                      ),
+                                          borderRadius:
+                                              BorderRadius.circular(18.0),
+                                          color: Colors.black26),
                                       child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
-                                          Text(reciptcatlist[index]['heading'],
+                                          Text(
+                                            reciptcatlist[index]['heading'],
                                             style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 24
-                                            ),
+                                                color: Colors.white,
+                                                fontSize: 24),
                                           )
                                         ],
                                       ),
-                                    )
-                                )
+                                    ))
                               ],
                             ),
-
                           ),
                         ),
                       );
-                     }
-                 ),
-
+                    }),
               )
-           ] ),
+            ]),
           )
         ],
       ),
