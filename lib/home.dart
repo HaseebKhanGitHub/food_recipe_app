@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:food_recipe_app/Search.dart';
 import 'package:food_recipe_app/model.dart';
 import 'package:http/http.dart';
 
@@ -93,7 +94,7 @@ class _HomeState extends State<Home> {
                                 '') {
                               print('Blanked');
                             } else {
-                              getRecipe(searchController.text);
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => Search(searchController.text)));
                             }
                           },
                           child: Container(
