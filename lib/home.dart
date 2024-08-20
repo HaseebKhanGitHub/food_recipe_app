@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:food_recipe_app/RecipeView.dart';
 import 'package:food_recipe_app/Search.dart';
 import 'package:food_recipe_app/model.dart';
 import 'package:http/http.dart';
@@ -144,6 +145,9 @@ class _HomeState extends State<Home> {
                         String caloText = recipeList[index].appcalo.toString();
                         String displayText = caloText.length > 6 ? caloText.substring(0, 6) : caloText;
                         return InkWell(
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => RecipeView(appurl : recipeList[index].appurl)));
+                          },
                           child: Card(
                             margin: EdgeInsets.all(20),
                             shape: RoundedRectangleBorder(
