@@ -12,6 +12,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  bool isLoading = true;
+
   List<RecipeModel> recipeList = <RecipeModel>[];
 
   List reciptcatlist = [{
@@ -36,6 +38,9 @@ class _HomeState extends State<Home> {
       RecipeModel recipeModel = new RecipeModel();
       recipeModel = RecipeModel.fromMap(element['recipe']);
       recipeList.add(recipeModel);
+      setState(() {
+        isLoading = false;
+      });
       log(recipeList.toString());
 
 
@@ -58,7 +63,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       body: Stack(
         children: [
-          Container(
+          Container(//Gradient Container ==============================================
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             decoration: BoxDecoration(
@@ -112,7 +117,7 @@ class _HomeState extends State<Home> {
                   ),
                 ),
 
-                Container(
+                Container( //Text Container ==================================================
                   padding: EdgeInsets.symmetric(horizontal: 20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -129,8 +134,8 @@ class _HomeState extends State<Home> {
                     ],
                   ),
                 ),
-                Container(
-                  child: ListView.builder(
+                Container( //Dishes cart ========================================================
+                  child: isLoading ? LinearProgressIndicator() : ListView.builder(
                       physics: NeverScrollableScrollPhysics(),
                       itemCount: recipeList.length,
                       shrinkWrap: true,
@@ -173,7 +178,7 @@ class _HomeState extends State<Home> {
 
                                 Positioned(
                                   right: 0,
-                                    child: Container(
+                                    child: Container( //Calories Container ============================================================
                                       width: 80,
                                       height: 40,
                                       decoration: BoxDecoration(
@@ -188,8 +193,7 @@ class _HomeState extends State<Home> {
                                             mainAxisAlignment: MainAxisAlignment.center,
                                             children: [
                                               Icon(Icons.local_fire_department,size: 16,),
-                                            //  Text(recipeList[index].appcalo.toString().substring(0,6)),
-
+                                            //  Text(recipeList[index].appcalo.toString().substring(0,6)),  changed causing error
 
                                             Text(displayText),
 
@@ -206,7 +210,7 @@ class _HomeState extends State<Home> {
                 ),
 
 
-               Container(
+               Container( //Horizontal Containers for Food Catogories ====================================================
                  height: 100,
                  child: ListView.builder( itemCount: reciptcatlist.length, shrinkWrap: true,
                      scrollDirection: Axis.horizontal,
@@ -225,7 +229,7 @@ class _HomeState extends State<Home> {
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(18.0),
                                   child: Image.network(reciptcatlist[index]['imageUrl'],fit: BoxFit.cover,
-                                  height: 250,width: 200,)
+                                  height: 250,width: 300,)
                                 ),
                                 Positioned(
                                     left: 0,right: 0,top: 0,bottom: 0,
@@ -241,7 +245,7 @@ class _HomeState extends State<Home> {
                                           Text(reciptcatlist[index]['heading'],
                                             style: TextStyle(
                                               color: Colors.white,
-                                              fontSize: 20
+                                              fontSize: 24
                                             ),
                                           )
                                         ],
